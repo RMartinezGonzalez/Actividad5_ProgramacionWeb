@@ -1,0 +1,58 @@
+:root {
+    --color-negro: #1E1E1E;
+    --color-verde-oscuro: #0b6e4f;
+    --color-verde-medio: #2e8b57;
+    --color-dorado: #D4AF37;
+    --color-blanco: #f2f2f2;
+}
+
+
+body {
+    background: var(--color-blanco);
+    font-family: "Segoe UI";
+    color: var(--color-blanco);
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    height: 100vh;
+    position: relative;
+    gap: 15px;
+    margin: 15px 0;
+}
+
+.boton {
+    background-color: var(--color-blanco);
+    width: 200px;
+    text-align: center;
+    border-radius: 8px;
+    padding: 15px 25px;
+    text-decoration: none;
+    color: var(--color-verde-medio);
+    font-weight: 600;
+    position: relative;
+    border: 5px solid var(--color-verde-medio);
+    display: inline-block;
+    transition: all 0.2s ease-in-out;
+}
+
+.boton:hover {
+    cursor: pointer;
+    transform: translateY(-2px);
+}
+
+.input-tooltip-valido {
+    background-color: transparent !important;
+    color: var(--color-verde-medio) !important;
+    box-shadow: none !important;
+    /* top: 50px !important; */
+    translate: -70px 100px;
+}
+
+.input-tooltip-invalido {
+    background-color: transparent !important;
+    color: red !important;
+    box-shadow: none !important;
+    /* top: 50px !important; */
+    translate: -70px 100px;
+}
