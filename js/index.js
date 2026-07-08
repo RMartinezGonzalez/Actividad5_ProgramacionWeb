@@ -16,6 +16,18 @@ menu.addEventListener("click", () => {
   }
 });
 
+// Cerrar el menú lateral principal si se hace clic fuera de él
+document.addEventListener("click", (e) => {
+  if (sidebar.classList.contains("menu-toggle")) {
+    if (!sidebar.contains(e.target) && !menu.contains(e.target)) {
+      sidebar.classList.remove("menu-toggle");
+      menu.classList.remove("menu-toggle");
+      submenuUsuarios.classList.remove("open");
+      btnUsuarios.classList.remove("open");
+    }
+  }
+});
+
 // Control del despliegue del submenú "Usuarios"
 btnUsuarios.addEventListener("click", (e) => {
   e.preventDefault(); // Evita que la página salte al inicio por el href="#"

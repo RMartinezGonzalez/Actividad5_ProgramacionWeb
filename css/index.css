@@ -193,6 +193,39 @@ header {
     /* Mantenemos el tamaño original de tus iconos */
     height: auto;
   }
+
+  /* Ajuste de contenido principal para usar todo el ancho en móviles */
+  .content {
+    margin-left: 0 !important;
+    padding: 1.25rem 1rem !important;
+  }
+
+  /* Ajuste de formularios en móviles */
+  .contenedor {
+    width: 100% !important;
+    max-width: 100% !important;
+    padding: 20px 16px !important;
+  }
+
+  /* Ajuste del Navbar para optimizar espacio */
+  header {
+    padding: 0.45rem 1rem !important;
+  }
+
+  .user-profile {
+    padding: 0.35rem 0.5rem !important;
+  }
+
+  .user-profile span {
+    display: none !important;
+  }
+
+  /* Ajuste de la tabla en dispositivos pequeños */
+  #tabla-usuarios th, #tabla-usuarios td {
+    padding: 0.5rem 0.3rem !important;
+    font-size: 0.8rem !important;
+    word-break: break-word;
+  }
 }
 
 
@@ -283,7 +316,7 @@ button:active {
   transform: scale(0.98);
 }
 
-.rigth {
+.right {
   border: none !important;
   width: auto !important;
   height: auto !important;
@@ -314,7 +347,8 @@ button:active {
 }
 
 .user-profile .user-caret {
-  width: 0.8rem;
+  width: 1.7rem;
+  height: 1.7rem;
   transition: transform 0.2s;
 }
 
