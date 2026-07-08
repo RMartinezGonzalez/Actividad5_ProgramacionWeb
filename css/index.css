@@ -1,0 +1,413 @@
+:root {
+  --background-color: white;
+  --text-title-color: #053D4E;
+  --text-color: #32363B;
+  --icon-color: #32363B;
+  --icon-menu-color: #707780;
+  --menu-color: #707780;
+
+  --text-selected-color: #355CC0;
+  --background-selected: #EBF0FF;
+  --background-hover: #F7F9FA;
+
+  --border-color: #E6E9ED;
+
+
+  --paper: #EEEFE9;
+  --paper-raised: #F8F8F4;
+  --ink: #1C1F1D;
+  --ink-soft: #545850;
+  --line: #CFD1C6;
+  --teal: #1F6F78;
+  --teal-deep: #14494F;
+  --amber: #C8850A;
+  --coral: #B7412F;
+  --mono: 'JetBrains Mono', monospace;
+  --sans: 'Inter', sans-serif;
+  --radius: 8px;
+}
+
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+body {
+  width: 100%;
+  height: 100vh;
+}
+
+header {
+  z-index: 200;
+  width: 100%;
+  display: flex;
+  justify-content: space-between;
+  padding: 0.45rem 2rem 0.45rem 1.27rem;
+  position: fixed;
+  border-bottom: 1px solid var(--border-color);
+  background-color: var(--background-color);
+  top: 0;
+  left: 0;
+}
+
+.menu {
+  height: 100%;
+  display: flex;
+  align-items: center;
+  cursor: pointer;
+  gap: 0.6rem;
+}
+
+.menu .icon-menu {
+  width: 1.7rem;
+}
+
+.left {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 1.4rem;
+}
+
+.right {
+  width: 100px;
+  height: 20px;
+}
+
+.user-profile .user-caret {
+  width: 1.7rem;
+}
+
+.sidebar {
+  margin-top: 4rem;
+  width: 4rem;
+  height: 100%;
+  position: fixed;
+  top: 0;
+  left: 0;
+  z-index: 100;
+  padding: 1.1rem 0;
+  border-right: 1px solid var(--border-color);
+  overflow-y: auto;
+  overflow-x: hidden;
+  background-color: var(--background-color);
+  transition: width 0.5s ease;
+}
+
+.sidebar.menu-toggle {
+  width: 18.70rem;
+}
+
+.menu.menu-toggle .icon-menu {
+  content: url('../img/x.svg');
+  width: 1.7rem;
+  /* Mantenemos el tamaño original de tus iconos */
+  height: auto;
+}
+
+.sidebar a {
+  display: flex;
+  align-items: center;
+  gap: 1.3rem;
+  padding: 0.9rem 0.7rem;
+  text-decoration: none;
+  margin: 0 0.5rem;
+  border-radius: 0.5rem;
+  white-space: nowrap;
+  overflow: hidden;
+  color: var(--text-color);
+}
+
+.sidebar a.selected {
+  color: var(--text-selected-color);
+  background-color: var(--background-selected);
+}
+
+.sidebar a:hover {
+  background-color: var(--background-hover);
+}
+
+.sidebar img {
+  width: 1.6rem;
+}
+
+.sidebar .submenu {
+  list-style: none;
+  max-height: 0;
+  overflow: hidden;
+  transition: max-height 0.4s ease-out;
+  padding-left: 1.5rem;
+  /* Desplazamiento a la derecha para notar la jerarquía */
+}
+
+/* Cuando se le añade la clase .open, se despliega */
+.sidebar .submenu.open {
+  max-height: 100px;
+  /* Un tamaño suficiente para albergar los links hijos */
+}
+
+/* Estilo para los links dentro del submenú */
+.sidebar .submenu a {
+  padding: 0.6rem 0.7rem;
+  font-size: 0.9rem;
+  /* Un poco más pequeño para diferenciarlo */
+  margin: 0.2rem 0.5rem;
+}
+
+.sidebar a .sub-captura {
+  width: 0.7rem;
+  margin-left: auto;
+  transition: transform 0.3s ease;
+}
+
+.sidebar a.open .sub-captura {
+  transform: rotate(180deg);
+}
+
+.content {
+  margin-top: 4rem;
+  margin-left: 4rem;
+  padding: 1.5rem 2rem;
+}
+
+.content-section.hidden {
+  display: none;
+}
+
+.error {
+  color: red;
+  font-size: 0.85rem;
+  display: none;
+  margin-bottom: 0.5rem;
+}
+
+@media (max-width:500px) {
+  .sidebar {
+    width: 0;
+  }
+
+  .menu.menu-toggle .icon-menu {
+    content: url('../img/x.svg');
+    width: 1.7rem;
+    /* Mantenemos el tamaño original de tus iconos */
+    height: auto;
+  }
+}
+
+
+/* ----------  Contenedor ---------- */
+
+.contenedor {
+  max-width: 460px;
+  margin: 8px 0 0 0;
+  background: #eff1f4;
+  border: 1.0px solid var(--ink);
+  border-radius: var(--radius);
+  padding: 32px;
+}
+
+h1 {
+  font-family: system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, 'Open Sans', 'Helvetica Neue', sans-serif;
+  font-size: 1.8rem;
+  letter-spacing: -0.02em;
+  margin-top: 0;
+  margin-bottom: 24px;
+}
+
+.titulo-m {
+  font-family: system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, 'Open Sans', 'Helvetica Neue', sans-serif;
+  letter-spacing: -0.02em;
+  font-size: 1.2rem;
+  font-weight: 600;
+}
+
+
+span {
+  font-family: system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, 'Open Sans', 'Helvetica Neue', sans-serif;
+  letter-spacing: -0.02em;
+}
+
+/* ---------- Formulario ---------- */
+
+.grupo-formulario {
+  margin-bottom: 18px;
+}
+
+.grupo-formulario label {
+  display: block;
+  font-family: system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, 'Open Sans', 'Helvetica Neue', sans-serif;
+  font-size: 0.75rem;
+  text-transform: uppercase;
+  letter-spacing: 0.06em;
+  color: var(--ink-soft);
+  margin-bottom: 6px;
+}
+
+.grupo-formulario input {
+  width: 100%;
+  font-family: var(--sans);
+  font-size: 0.98rem;
+  padding: 10px 12px;
+  border: 1.5px solid var(--line);
+  border-radius: var(--radius);
+  background: #fff;
+  color: var(--ink);
+}
+
+.grupo-formulario input:focus {
+  outline: none;
+  border-color: var(--teal);
+}
+
+/* ---------- Nuevos Estilos Agregados (Sin alterar los existentes) ---------- */
+
+button {
+  font-family: var(--sans);
+  font-size: 0.95rem;
+  font-weight: 600;
+  color: white;
+  background-color: var(--teal);
+  border: none;
+  padding: 10px 18px;
+  border-radius: var(--radius);
+  cursor: pointer;
+  transition: background-color 0.2s, transform 0.1s;
+}
+
+button:hover {
+  background-color: var(--teal-deep);
+}
+
+button:active {
+  transform: scale(0.98);
+}
+
+.rigth {
+  border: none !important;
+  width: auto !important;
+  height: auto !important;
+  display: flex;
+  align-items: center;
+}
+
+.user-profile {
+  position: relative;
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+  cursor: pointer;
+  padding: 0.5rem 0.75rem;
+  border-radius: var(--radius);
+  transition: background-color 0.2s;
+  user-select: none;
+}
+
+.user-profile:hover {
+  background-color: var(--background-hover);
+}
+
+.user-profile span {
+  font-size: 0.95rem;
+  color: var(--text-color);
+  font-weight: 500;
+}
+
+.user-profile .user-caret {
+  width: 0.8rem;
+  transition: transform 0.2s;
+}
+
+.user-profile.active .user-caret {
+  transform: rotate(180deg);
+}
+
+.dropdown-menu {
+  display: none;
+  position: absolute;
+  top: 110%;
+  right: 0;
+  background-color: var(--background-color);
+  border: 1px solid var(--border-color);
+  border-radius: var(--radius);
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+  min-width: 150px;
+  z-index: 300;
+  overflow: hidden;
+}
+
+.dropdown-menu.show {
+  display: block;
+}
+
+.dropdown-menu a {
+  display: block;
+  padding: 0.75rem 1rem;
+  text-decoration: none;
+  color: var(--coral);
+  font-size: 0.9rem;
+  font-weight: 500;
+  transition: background-color 0.2s;
+}
+
+.dropdown-menu a:hover {
+  background-color: var(--background-hover);
+}
+
+/* Modal */
+.fondo-modal {
+  display: none;
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background-color: rgba(0, 0, 0, 0.4);
+  z-index: 1000;
+  justify-content: center;
+  align-items: center;
+}
+
+.fondo-modal .modal {
+  background-color: var(--background-color);
+  padding: 2rem;
+  border-radius: var(--radius);
+  border: 1px solid var(--border-color);
+  box-shadow: 0 10px 30px rgba(0, 0, 0, 0.15);
+  max-width: 320px;
+  width: 90%;
+  text-align: center;
+  animation: modalAppear 0.3s ease;
+}
+
+@keyframes modalAppear {
+  from {
+    transform: translateY(-20px);
+    opacity: 0;
+  }
+
+  to {
+    transform: translateY(0);
+    opacity: 1;
+  }
+}
+
+.fondo-modal .modal h3 {
+  font-family: var(--sans);
+  color: var(--text-title-color);
+  margin-bottom: 1rem;
+  font-size: 1.25rem;
+}
+
+.fondo-modal .modal #edadTexto {
+  font-size: 2rem;
+  font-weight: 700;
+  color: var(--teal);
+  margin-bottom: 0.5rem;
+}
+
+.fondo-modal .modal #estadoTexto {
+  font-size: 1rem;
+  color: var(--ink-soft);
+  margin-bottom: 1.5rem;
+}

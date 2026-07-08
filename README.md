@@ -1,86 +1,58 @@
-# Tooltips reutilizables
+# Sistema Escolar - Panel de Utilería
 
-
-## Portada
-
-<div align="center">
-
-# INSTITUTO TECNOLÓGICO NACIONAL DE MÉXICO
-# INSTITUTO TECNOLÓGICO DE OAXACA
-
-
-### **Carrera:** Ingeniería en Sistemas Computacionales
-### **Materia:** Programación Web
-
-
-### **Unidad 2:** HTML, XML Y CSS
-
-### **Alumno:** Martínez González Ricardo  
-### **Matrícula:** 23161012
-
-### **Docente:** Adelina Martinez Nieto
-
-### **Grupo:** 7SC  
-### **Horario:** 10:00 – 13:00 hrs
+Este proyecto es una interfaz de panel escolar (dashboard) interactiva y responsiva que incluye un menú lateral dinámico, visualización de datos en tiempo real persistidos de forma local, validaciones avanzadas de formularios y alertas interactivas.
 
 ---
 
+## Estructura del Proyecto
 
-</div>
-
-### El Problema que Resuelve
-Primero el uso de tooltips es muy común en cualquier página web y por eso mismo que utilizan muchas y de diferentes estilos es repetitivo y tedioso tener que crear cada tooltip completamente a mano y esto es lo que resuelte este componente, hacerlas reutilizables.
-
-### La Solución
-Dentro del HTML con el atributo "data-texto" y "data-tipo" puedes poner el texto la clase que se le atribuyen respectivamente. 
+* **`index.html`**: Pantalla principal del sistema. Contiene el navbar superior, el sidebar colapsable, las vistas de captura y consulta, y el modal de mayoría de edad.
+* **`css/index.css`**: Hoja de estilos que implementa un diseño limpio, moderno e interactivo (sombras suaves, transiciones fluidas, variables personalizadas de color y tipografía).
+* **`js/index.js`**: Controlador principal de la interfaz de usuario. Maneja la visualización de secciones, la simulación de sesión de usuario, el renderizado dinámico de tablas y la validación en tiempo de envío.
+* **`js/utileria.js`**: Biblioteca interna con funciones de validación comunes y utilidades (formato de correo, verificación de contraseñas seguras, validación de caracteres, cálculo de edad, etc.).
 
 ---
 
-# Instalación
+## Funcionalidades Implementadas
 
-Para integrar este componente en cualquier proyecto HTML, incluye los archivos en el head siguiendo la siguiente estructura.
+### 1. Menú Lateral (Sidebar) e Interactividad
+* **Colapsado fluido**: El sidebar cuenta con un botón hamburguesa (`#menu`) que contrae o despliega el menú lateral con transiciones suaves en CSS.
+* **Submenú Desplegable**: Al hacer clic en "Usuarios" se despliega verticalmente la opción "Captura" animada mediante `max-height`.
+* **Navegación Dinámica**: Las secciones se muestran u ocultan dinámicamente llamando a la función `mostrarSeccion(seccion)` para una experiencia tipo Single Page Application (SPA).
 
-![Captura de pantalla](./img/estructura.png)
+### 2. Gestión de Sesión de Usuario
+* **Simulación de Inicio de Sesión**: Los datos ingresados en `login.html` se registran en `localStorage` (`sessionUser`).
+* **Visualización del Perfil**: El navbar superior muestra el nombre o correo del usuario activo. Al hacer clic, se despliega un menú flotante con la opción de **"Salir del sistema"** para limpiar la sesión y regresar a la pantalla de acceso.
+* **Acceso Directo Permitido**: Para agilizar el desarrollo, no se bloquea el acceso si no hay sesión activa; en su lugar, se asigna automáticamente `"Usuario Demo"` como valor por defecto.
 
-### 1. Incluir el CSS (Estilos)
-Añade el css en la etiqueta `<head>` de tu archivo HTML:
+### 3. Registro y Lista de Usuarios
+* **Validación Rigurosa**: El formulario de captura de usuario valida que el formato de correo sea correcto (`validarCorreo`) y la contraseña cumpla con criterios mínimos de seguridad (`validarPassword`: 8+ caracteres, mayúscula, minúscula, número y carácter especial).
+* **Persistencia Local (`localStorage`)**: Los usuarios registrados se guardan en el arreglo local persistido bajo la clave `usuariosCapturados`.
+* **Renderizado en Tiempo Real**: La sección de visualización ("Usuarios") lee y dibuja dinámicamente los registros almacenados en una tabla estilizada.
+* **Notificaciones de SweetAlert2**: Los avisos de confirmación de guardado exitoso usan la librería **SweetAlert2** con estilos que armonizan con la paleta de colores del sistema.
 
-```html
-<link rel="stylesheet" href="./css/componente.css">
-```
-
-### 2. Incluir el JS (lógica)
-Añade el js en la etiqueta `<head>` de tu archivo HTML:
-
-```html
-<script src="./js/componente.js"></script>
-```
+### 4. Captura de Alumnos y Cálculo de Edad
+* **Validaciones**:
+  * **Nombre**: Validado mediante la función `soloLetras` (acepta letras y espacios).
+  * **Número de Control**: Debe contener únicamente números y tener una longitud mínima de 6 dígitos (válido para formatos reales de 8 dígitos).
+* **Modal de Mayoría de Edad**: Al procesar la fecha de nacimiento ingresada:
+  1. Calcula los años cumplidos mediante `calcularEdad()`.
+  2. Evalúa si el alumno es mayor de edad a través de `esMayorDeEdad()`.
+  3. Despliega de forma animada un modal translúcido (`.fondo-modal`) con los resultados.
 
 ---
 
-## Uso y Ejemplos de Código
+## Requisitos e Instalación
 
-A continuación se muestra el código real y la estructura necesaria para implementar el componente en tu proyecto.
+1. **Uso Local**: Puedes abrir directamente el archivo `index.html` en cualquier navegador web moderno.
+2. **Servidor Web Local (Recomendado)**: Puedes colocar la carpeta del proyecto dentro del directorio raíz de un servidor local (por ejemplo en `C:/xampp/htdocs/index/`) y acceder mediante:
+   ```
+   http://localhost/index/index.html
+   ```
 
-### 1. Estructura HTML
-Al ser un tooltip es muy sencillo añadirlo solo se añade el siguiente código en tu archivo HTML para renderizar la estructura base del componente.
-NOTA: Puede ser cualquier etiqueta solo que tiene que llevar los atributos `onmouseover`, `onmouseout`, `data-texto` que es para el texto que llevará el tooltip y `data-tipo` que será la clase de css para su diseño específico.
+---
 
-```html
-<button onmouseover="mostrarTooltip(this)" onmouseout="ocultarTooltip()" data-texto="Guardado con éxito" data-tipo="valido" class="boton">Guardar</button>
-```
-
-### 2. Estructura CSS
-Como ya se mencionó aqui solamente se agregaria una clase al final que sería la misma que el `data-tipo`, y se pondrá el diseño que se quiere del tooltip (Ya tiene un diseño simple base, pero se puede reescribir)
-
-```css
-.valido {
-    background-color: #2ecc71;
-}
-```
-### 3. Visualización
-Asi quedaria con esas pocas lineas de código html y css que pusimos
-
-![Prueba funcioanal](./img/test.png)
-
-Asi de simple y fácil es utilizar este componente de tooltips.
+## 👥 Colaboración y Notas de Código
+* Las funciones genéricas de validación se encuentran centralizadas en [utileria.js](file:///c:/xampp/htdocs/index/js/utileria.js).
+* Toda la lógica de eventos y renderizado interactivo está en [index.js](file:///c:/xampp/htdocs/index/js/index.js).
+* Los comentarios en español marcados con `COMENTARIO:` señalan los bloques del listado de usuarios dinámicos tanto en el HTML como en el JS.

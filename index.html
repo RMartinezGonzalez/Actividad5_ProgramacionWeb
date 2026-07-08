@@ -1,0 +1,154 @@
+<!DOCTYPE html>
+<html lang="es">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Prueba de Utileria</title>
+    <link rel="stylesheet" href="css/index.css">
+</head>
+
+<body>
+    <header>
+        <div class="left">
+            <div class="menu" id="menu">
+                <img src="img/menu-wide.svg" alt="Menu" class="icon-menu">
+                <span class="titulo-m">Sistema Escolar</span>
+            </div>
+        </div>
+        <div class="right">
+            <div class="user-profile" id="user-profile">
+                <span id="user-name-display">Cargando...</span>
+                <img src="img/user-circle.svg" alt="" class="user-caret">
+                <div class="dropdown-menu" id="dropdown-menu">
+                    <a href="#" id="btn-logout">Salir del sistema</a>
+                </div>
+            </div>
+        </div>
+    </header>
+
+    <div class="sidebar" id="sidebar">
+        <nav>
+            <ul>
+                <!-- Agregamos una clase "has-submenu" para identificarlo en JS -->
+                <li class="has-submenu">
+                    <a href="#" class="selected" id="btn-usuarios">
+                        <img src="img/user.svg" alt="usuarios">
+                        <span>Usuarios</span>
+                        <img src="img/caret-big-down.svg" alt="" class="sub-captura" id="captura-menu">
+                    </a>
+                    <!-- Este es el submenú que se desplegará -->
+                    <ul class="submenu" id="submenu-usuarios">
+                        <li>
+                            <a href="#" id="btn-captura">
+                                <!-- Puedes dejarlo sin img o ponerle un mini icono si quieres -->
+                                <span>Captura</span>
+                            </a>
+                        </li>
+                    </ul>
+                </li>
+                <li class="alumnos">
+                    <a href="#" id="btn-alumnos">
+                        <img src="img/face.svg" alt="alumnos">
+                        <span>Alumnos</span>
+                    </a>
+                </li>
+            </ul>
+        </nav>
+    </div>
+
+    <main class="content" id="content">
+        <section id="section-usuarios" class="content-section">
+            <h1>Usuarios</h1>
+
+            <!-- COMENTARIO: Sección para visualizar la lista de usuarios capturados dinámicamente -->
+            <div class="tabla-usuarios-container" style="margin-top: 1.5rem; overflow-x: auto;">
+                <table id="tabla-usuarios"
+                    style="width: 100%; min-width: 320px; border-collapse: collapse; text-align: left; font-family: var(--sans);">
+                    <thead>
+                        <tr style="border-bottom: 2px solid var(--border-color);">
+                            <th
+                                style="padding: 0.75rem 0.5rem; color: var(--ink-soft); font-size: 0.75rem; text-transform: uppercase; letter-spacing: 0.05em; font-weight: 600;">
+                                Nombre de usuario</th>
+                            <th
+                                style="padding: 0.75rem 0.5rem; color: var(--ink-soft); font-size: 0.75rem; text-transform: uppercase; letter-spacing: 0.05em; font-weight: 600;">
+                                Correo electrónico</th>
+                        </tr>
+                    </thead>
+                    <tbody id="lista-usuarios-body">
+                        <!-- Los usuarios se agregarán dinámicamente vía JavaScript (ver js/index.js) -->
+                    </tbody>
+                </table>
+            </div>
+        </section>
+
+        <section id="section-captura" class="content-section hidden">
+            <h1>Captura de usuario</h1>
+            <div class="contenedor">
+                <form id="form-usuario">
+                    <div class="grupo-formulario">
+                        <input type="text" id="usr-nombre" placeholder="Nombre de usuario" required>
+                    </div>
+
+                    <div class="grupo-formulario">
+                        <input type="text" id="usr-correo" placeholder="Correo electrónico" required>
+                        <p class="error" id="error-correo">Correo no válido</p>
+                    </div>
+
+                    <div class="grupo-formulario">
+                        <input type="password" id="usr-password" placeholder="Contraseña" required>
+                        <p class="error" id="error-password">Contraseña no válida</p>
+                    </div>
+
+
+                    <button type="submit">Guardar</button>
+                </form>
+            </div>
+        </section>
+
+        <section id="section-alumnos" class="content-section hidden">
+            <h1>Captura de alumno</h1>
+            <div class="contenedor">
+                <form id="form-alumno">
+                    <div class="grupo-formulario">
+                        <input type="text" id="al-nombre" placeholder="Nombre del alumno" required>
+                        <p class="error" id="error-al-nombre">Nombre no válido (solo letras)</p>
+                    </div>
+
+                    <div class="grupo-formulario">
+                        <input type="text" id="al-nocontrol" placeholder="Número de control (Mínimo 6 dígitos)"
+                            required>
+                        <p class="error" id="error-al-nocontrol">Número de control no válido (debe tener al menos 6
+                            dígitos numéricos)</p>
+                    </div>
+
+                    <div class="grupo-formulario">
+                        <label for="al-fnacimiento"
+                            style="display: block; margin-bottom: 6px; font-family: system-ui; font-size: 0.75rem; text-transform: uppercase; color: var(--ink-soft); letter-spacing: 0.06em;">Fecha
+                            de nacimiento</label>
+                        <input type="date" id="al-fnacimiento" required>
+                        <p class="error" id="error-al-fnacimiento">Fecha de nacimiento requerida</p>
+                    </div>
+
+                    <button type="submit">Guardar Alumno</button>
+                </form>
+            </div>
+        </section>
+    </main>
+
+    <!-- Modal de edad -->
+    <div class="fondo-modal" id="modal">
+        <div class="modal">
+            <h3>Edad calculada</h3>
+            <div id="edadTexto">--</div>
+            <p id="estadoTexto"></p>
+            <button type="button" onclick="cerrarModal()">Cerrar</button>
+        </div>
+    </div>
+
+    <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+    <script src="js/utileria.js"></script>
+    <script src="js/index.js"></script>
+</body>
+
+</html>
