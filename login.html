@@ -17,14 +17,15 @@
     <div id="tooltip" class="tooltip-oculto"></div>
     <main class="bg-black rounded-md py-[40px] px-[50px] flex flex-col gap-4 items-center text-[var(--color-blanco)]">
         <h1 class="text-[30px] font-semibold">Login</h1> 
+        <p class="text-[10px] text-center">*Para la contraseña necesita 8 carácteres<br>mayúcula, minúscula, número y un carácter especial</p> 
         <form class="flex flex-col gap-12 relative w-[300px]">
             <div class="flex flex-col gap-1">
                 <label for="">Correo:</label>
-                <input id="correo-input" type="text" placeholder="Ej: Wilfrino Sánchez" class="w-full py-2 px-[10px] rounded-sm text-[var(--color-verde-medio)]" oninput="validarCorreo(); mostrarTooltip(this);" data-texto="Ingrese correo válido" data-tipo="input-tooltip-valido">
+                <input id="correo-input" type="text" placeholder="Ej: wilfrinosánchez@gmail.com" class="w-full py-2 px-[10px] rounded-sm text-[var(--color-verde-medio)]" oninput="validarCorreo(); mostrarTooltip(this);" data-texto="Ingrese correo válido" data-tipo="input-tooltip-valido">
             </div>
             <div class="flex flex-col gap-1">
                 <label for="">Contraseña:</label>
-                <input id="contra-input" type="password" placeholder="Ej: Al*2J<d" class="w-full py-2 px-[10px] rounded-sm text-[var(--color-verde-medio)]" oninput="validarContra(); mostrarTooltip(this);" data-texto="Ingrese contraseña válida" data-tipo="input-tooltip-valido">
+                <input id="contra-input" type="password" placeholder="Ej: Al#2J<d" class="w-full py-2 px-[10px] rounded-sm text-[var(--color-verde-medio)]" oninput="validarContra(); mostrarTooltip(this);" data-texto="Ingrese contraseña válida" data-tipo="input-tooltip-valido">
             </div>
             <div class="flex flex-col items-center">
                 <button type="button" class="boton" onclick="validarLogin()">Iniciar Sesión</button>
