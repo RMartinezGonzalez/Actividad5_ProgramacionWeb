@@ -1,0 +1,8 @@
+# carpeta ignore
+ignore/
+
+# Ignorando cada archivo individualmete
+ignore.html
+ignore.mk
+css/ignore.css
+js/ignore.js
